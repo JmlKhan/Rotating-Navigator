@@ -3,7 +3,7 @@
 @mixin flexCenter{
     
     overflow-x: hidden;
-    margin: 0;
+    
 }
 @mixin trans{
     transform-origin: top left;
@@ -15,6 +15,7 @@
 body{
    font-family: $font; 
    @include flexCenter();
+   margin: 0; 
    
    background-color: #333;
    color: #222; 
@@ -23,7 +24,7 @@ body{
 .container{
     background-color: #fafafa;
     @include trans(); 
-    width: 100vh;
+    width: auto;
     min-height: 100vh;
     padding: 50px;
 }
@@ -31,11 +32,21 @@ body{
     transform: rotate(-20deg);
 
 }
+.container.show-nav + nav li{
+    transform: translateX(0);
+    transition-delay: 0.3s  ;
+}
+
+
+
 .circle-container{
     position: fixed;
     top: -100px;
     left: -100px;
     
+}
+.container.show-nav .circle {
+    transform: rotate(-70deg);
 }
 .circle{
     background-color: #ff7979;
@@ -52,6 +63,10 @@ button{
    border: 0;
    font-size: 26px;
    color: #fff;
+
+   :hover{
+       cursor: pointer;
+   }
 }
 button:focus{
  outline: none;
@@ -67,7 +82,55 @@ button#close{
 }
 .content {
     img{
-        max-width: 100%;
+        max-width: 100%; 
+     }
+
+    max-width: 1000px;
+    margin: 50px auto;
+
+    h1{
+        margin: 0;
+    }
+    small{
+        color: #555;
+        font-style: italic;
+    }
+    p{
+        color: #333;
+        line-height: 1.5;
+    }
+}
+
+nav{
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 100;
+
+    ul{
+        list-style-type: none;
+        padding-left: 30px;
+
+        li{
+            text-transform: uppercase;
+            color: #fff;
+            margin: 40px 0;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease-in;
+            i{
+              font-size: 20px;
+              margin-right: 10px;  
+            }
+        }
+        li+li{ 
+            margin-left:15px ;
+            transform: translateX(-150%);
+        }
+        li+li+li{
+            margin-left: 30px;
+            transform: translateX(-200%);
+        }
+
     }
 }
 
